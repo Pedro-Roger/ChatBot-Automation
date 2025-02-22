@@ -1,3 +1,5 @@
-2025/02/21-23:07:31.473 25d8 Reusing MANIFEST C:\Users\Pedro Roger\Desktop\dev\ChatBot-Automation\tokens\chatGPT_BOT\Default\Local Storage\leveldb/MANIFEST-000001
-2025/02/21-23:07:31.480 25d8 Recovering log #4
-2025/02/21-23:07:31.483 25d8 Reusing old log C:\Users\Pedro Roger\Desktop\dev\ChatBot-Automation\tokens\chatGPT_BOT\Default\Local Storage\leveldb/000004.log 
+2025/02/21-23:52:30.053 1fe8 Reusing MANIFEST C:\Users\Pedro Roger\Desktop\dev\ChatBot-Automation\tokens\chatGPT_BOT\Default\Local Storage\leveldb/MANIFEST-000001
+2025/02/21-23:52:30.061 1fe8 Recovering log #4
+2025/02/21-23:52:30.061 1fe8 Level-0 table #6: started
+2025/02/21-23:52:30.074 1fe8 Level-0 table #6: 16185 bytes OK
+2025/02/21-23:52:30.085 1fe8 Delete type=0 #4

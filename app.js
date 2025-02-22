@@ -1,42 +1,44 @@
-const { default: axios } = require('axios');
+require('dotenv').config();
+const axios = require('axios');
 const venom = require('venom-bot');
 
-const header = {
-    
-    "Content-Type": "application/json",
-    "Authorization": "Bearer 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"
-}
-const start = (client) => {
-    client.onMessage((message) => {
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-        axios.post('https://api.openai.com/v1/chat/completions'), {
-            "model": "gpt-4o",
-            "messages": [ {"role": "user", "content": message.body} ],
+const header = {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${OPENAI_API_KEY}`
+};
+
+const start = (client) => {
+    client.onMessage(async (message) => {
+        try {
+            console.log("Recebida mensagem:", message.body);
+
+            const response = await axios.post(
+                'https://api.openai.com/v1/chat/completions',
+                {
+                    "model": "gpt-3.5-turbo" , 
+                    "messages": [{ "role": "user", "content": message.body }]
+                },
+                { headers: header }
+            );
+
+            const reply = response.data.choices[0]?.message?.content || "Erro ao obter resposta.";
+
+            await client.sendText(message.from, reply);
+            console.log("Resposta enviada:", reply);
+
+        } catch (error) {
+            console.error("Erro ao processar mensagem:", error.response?.data || error.message);
+            await client.sendText(message.from, "Ocorreu um erro ao processar sua mensagem.");
         }
-        
-        
-    },{
-        headers: header
-    })
-    .then((response) => {
-        console.log(response);
-    })
-    .catch((error) => {
-        console.log(error);
     });
 };
 
-venom.create(
-    {
-        session: 'chatGPT_BOT',
-        multidevice: true,
-        browserArgs: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--headless=new'
-        ]
-    }
-)
-    .then((client) => start(client))
-    .catch((err) => console.log(err));
-
+venom.create({
+    session: 'chatGPT_BOT',
+    multidevice: true,
+    browserArgs: ['--no-sandbox', '--disable-setuid-sandbox', '--headless=new']
+})
+    .then(client => start(client))
+    .catch(err => console.log("Erro ao iniciar bot:", err));
