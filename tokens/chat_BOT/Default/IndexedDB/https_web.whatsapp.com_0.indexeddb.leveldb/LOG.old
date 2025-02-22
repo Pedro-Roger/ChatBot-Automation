@@ -1,0 +1,22 @@
+2025/02/22-01:54:00.392 21f8 Reusing MANIFEST C:\Users\Pedro Roger\Desktop\dev\ChatBot-Automation\tokens\chat_BOT\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/02/22-01:54:00.392 21f8 Recovering log #36
+2025/02/22-01:54:00.467 21f8 Reusing old log C:\Users\Pedro Roger\Desktop\dev\ChatBot-Automation\tokens\chat_BOT\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000036.log 
+2025/02/22-01:54:02.325 32c Level-0 table #41: started
+2025/02/22-01:54:02.413 32c Level-0 table #41: 867130 bytes OK
+2025/02/22-01:54:02.416 32c Delete type=0 #36
+2025/02/22-01:54:02.417 21f8 Manual compaction at level-0 from '\x00\x16\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x17\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/02/22-01:54:02.428 21f8 Level-0 table #43: started
+2025/02/22-01:54:02.438 21f8 Level-0 table #43: 436 bytes OK
+2025/02/22-01:54:02.441 21f8 Delete type=0 #40
+2025/02/22-01:54:02.442 21f8 Manual compaction at level-0 from '\x00\x17\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x18\x00\x00\x00' @ 0 : 0; will stop at '\x00\x17\x00\x00\x05' @ 87693 : 0
+2025/02/22-01:54:02.442 21f8 Compacting 1@0 + 1@1 files
+2025/02/22-01:54:02.525 21f8 Generated table #44@0: 17966 keys, 434803 bytes
+2025/02/22-01:54:02.525 21f8 Compacted 1@0 + 1@1 files => 434803 bytes
+2025/02/22-01:54:02.528 21f8 compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/02/22-01:54:02.529 21f8 Delete type=2 #43
+2025/02/22-01:54:02.530 21f8 Manual compaction at level-0 from '\x00\x17\x00\x00\x05' @ 87693 : 0 .. '\x00\x18\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/02/22-01:54:05.029 389c Compacting 1@1 + 1@2 files
+2025/02/22-01:54:05.073 389c Generated table #45@1: 17446 keys, 707379 bytes
+2025/02/22-01:54:05.073 389c Compacted 1@1 + 1@2 files => 707379 bytes
+2025/02/22-01:54:05.077 389c compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/02/22-01:54:05.078 389c Delete type=2 #41

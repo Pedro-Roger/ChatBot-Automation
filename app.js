@@ -1,29 +1,43 @@
 require('dotenv').config();
 const axios = require('axios');
 const venom = require('venom-bot');
+const banco = require('./src/banco.js');
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
-const header = {
-    "Content-Type": "application/json",
-    "Authorization": `Bearer ${OPENAI_API_KEY}`
-};
+if (!GEMINI_API_KEY) {
+    console.error("Erro: Chave da API do Gemini não encontrada. Defina a variável GEMINI_API_KEY no .env.");
+    process.exit(1);
+}
 
 const start = (client) => {
     client.onMessage(async (message) => {
+
+        const userCadastrado = banco.db.find(numero => numero.numero === message.from);
+
+        if (!userCadastrado) {
+            console.log("cadastrando usuário:");
+            banco.db.push({ num: message.from, historico: [] });
+
+
+        }
+        else {
+            console.log("Usuário já cadastrado:");
+        }
+
+        console.log(banco.db)
+
         try {
             console.log("Recebida mensagem:", message.body);
 
             const response = await axios.post(
-                'https://api.openai.com/v1/chat/completions',
+                `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
                 {
-                    "model": "gpt-3.5-turbo" , 
-                    "messages": [{ "role": "user", "content": message.body }]
-                },
-                { headers: header }
+                    contents: [{ parts: [{ text: message.body }] }]
+                }
             );
 
-            const reply = response.data.choices[0]?.message?.content || "Erro ao obter resposta.";
+            const reply = response.data.candidates?.[0]?.content?.parts?.[0]?.text || "Erro ao obter resposta.";
 
             await client.sendText(message.from, reply);
             console.log("Resposta enviada:", reply);
@@ -36,7 +50,7 @@ const start = (client) => {
 };
 
 venom.create({
-    session: 'chatGPT_BOT',
+    session: 'chat_BOT',
     multidevice: true,
     browserArgs: ['--no-sandbox', '--disable-setuid-sandbox', '--headless=new']
 })
